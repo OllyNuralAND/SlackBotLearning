@@ -3,8 +3,9 @@
 The Slack bot's main purpose is to reply to ANDis queries of upcoming Lunch and Learns and CoPs. The main project goal is to increase attendance to these events leading to more upskill in the workplace.
 
 ## Getting Started
+You will need to authenticate with the Google apis the first time you run this app. 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Follow [these] (https://developers.google.com/google-apps/calendar/quickstart/nodejsnp) instructions to generate a client_secret.json. 
 
 ### Prerequisites
 
@@ -34,7 +35,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Need to decided on test framework - Jasmin or Jest
 
 ### Break down into end to end tests
 
@@ -58,7 +59,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [npm] (https://docs.npmjs.com/) - Used to build the project
+* [npm] (https://docs.npmjs.com/) - Used to install dependencies
 
 ## Contributing
 
