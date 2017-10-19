@@ -1,6 +1,6 @@
-# Project Title
+# Lunch and Learn and CoP Slack bot server
 
-One Paragraph of project description goes here
+The Slack bot's main purpose is to reply to ANDis queries of upcoming Lunch and Learns and CoPs. The main project goal is to increase attendance to these events leading to more upskill in the workplace.
 
 ## Getting Started
 
@@ -8,10 +8,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Install dependencies using Node Package Manager:
 
 ```
-Give examples
+npm install
 ```
 
 ### Installing
@@ -58,9 +58,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [npm] (https://docs.npmjs.com/) - Used to build the project
 
 ## Contributing
 
