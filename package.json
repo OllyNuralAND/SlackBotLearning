@@ -1,0 +1,24 @@
+{
+  "name": "slackbotlearning",
+  "version": "1.0.0",
+  "description": "Best slack bot ever",
+  "main": "quickstart.js",
+  "dependencies": {
+    "google-auth-library": "^0.11.0",
+    "googleapis": "^22.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OllyNuralAND/SlackBotLearning.git"
+  },
+  "author": "onural, jcels",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OllyNuralAND/SlackBotLearning/issues"
+  },
+  "homepage": "https://github.com/OllyNuralAND/SlackBotLearning#readme"
+}
