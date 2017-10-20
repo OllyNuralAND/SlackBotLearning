@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const apiwrapper = require('./api/api-wrapper');
 
 // TODO - Change this to use environment variables
 const port = 8081;
