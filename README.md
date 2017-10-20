@@ -1,6 +1,6 @@
-# Project Title
+# Slack bot replying ANDis 
 
-One Paragraph of project description goes here
+The Slack bot's main purpose is to reply ANDis queries 
 
 ## Getting Started
 
