@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const apiwrapper = require('./api/api-wrapper');
+const requests = require('./api/requests');
+let oauth2Client;
+apiwrapper.authSetup((authClientResponse) => {
+    oauth2Client = authClientResponse;
+});
 
 // TODO - Change this to use environment variables
 const port = 8081;
@@ -10,6 +15,8 @@ const eventTypes = [
     {label : "landl"},
     {label : "learningEvents"} 
 ];
+
+console.log("Server hello!");
 
 // Dynamic endpoint receiving a param of eventtype to test
 app.get('/events/:eventType', function (req, res) {
@@ -24,7 +31,10 @@ app.get('/events/:eventType', function (req, res) {
 })
 
 function getData(event) {
-    return event;
+    console.log("Getting data");
+    console.log(oauth2Client);
+    apiwrapper.listEvents(oauth2Client);
+    return (event);
 }
 
 // Else any requests not already hit will end up here for a 404
