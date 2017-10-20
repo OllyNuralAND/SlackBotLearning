@@ -4,21 +4,21 @@ const app = express();
 // TODO - Change this to use environment variables
 const port = 8081;
 
-const eventType = [ 
+const eventTypes = [ 
     {label : "cop"},
     {label : "landl"},
     {label : "learningEvents"} 
 ];
 
 // Dynamic endpoint receiving a param of eventtype to test
-app.get('/events/:eventtype', function (req, res) {
-    let foundEvent = eventType.find((event) => {
-        return event.label == req.params.eventtype;
+app.get('/events/:eventType', function (req, res) {
+    const foundEvent = eventTypes.find((event) => {
+        return event.label == req.params.eventType;
     });
     if (foundEvent) {
         res.send(getData(foundEvent));
     } else {
-        res.sendStatus(404);
+        res.send([]);
     }
 })
 

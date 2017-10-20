@@ -35,7 +35,8 @@ describe("Server endpoint testing", function() {
 
     it("returns a 404 on for a GET request on '/events/somebadevent'", function (done) {
       request(app).get('/events/somebadevent').then((response) => {
-        expect(response.statusCode).toBe(404);
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toEqual([]);
         done();
       })
     }); 
