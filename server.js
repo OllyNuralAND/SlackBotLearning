@@ -16,8 +16,6 @@ const eventTypes = [
     {label : "learningEvents"} 
 ];
 
-console.log("Server hello!");
-
 // Dynamic endpoint receiving a param of eventtype to test
 app.get('/events/:eventType', function (req, res) {
     const foundEvent = eventTypes.find((event) => {
@@ -31,15 +29,13 @@ app.get('/events/:eventType', function (req, res) {
 })
 
 function getData(event) {
-    console.log("Getting data");
     console.log(oauth2Client);
-    apiwrapper.listEvents(oauth2Client);
+    requests.listEvents(oauth2Client);
     return (event);
 }
 
 // Else any requests not already hit will end up here for a 404
 app.get('/', function (req, res) {
-    console.log("Hit 404 API");
     res.sendStatus(404);
 })
 
