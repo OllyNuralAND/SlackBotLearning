@@ -5,7 +5,7 @@ let google = require('googleapis');
 
 // This needs to be using a specific time 
 // Test delays means the times are sometimes out of sync
-let originalDate = moment();
+let originalDate = moment("2013-08-26 16:55:00");
 let dateTime = originalDate.toISOString();
 let date = originalDate.format('YYYY-MM-DD');
 
@@ -14,6 +14,7 @@ describe("Checking the get of google API information is returned in the correct 
   it("Should return three responses for getting all learningEvents", function (done) {
     requests.listEvents().then(response => {
       expect(response).toHaveLength(3);
+      done();
     })
   });
 

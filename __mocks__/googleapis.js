@@ -1,7 +1,7 @@
 const fs = jest.genMockFromModule('googleapis');
 
 let moment = require('moment');
-let originalDate = moment();
+let originalDate = moment("2013-08-26 16:55:00");
 let dateTime = originalDate.toISOString();
 let date = originalDate.format('YYYY-MM-DD');
 
@@ -17,7 +17,6 @@ const googleapis = {
         }
     }
 }
-
 
 module.exports = googleapis;
 
@@ -36,7 +35,6 @@ let mockData =
      }
     ],
     "nextPageToken": "CigKGjAwZTV1YXRjMzY1YWo4NjVyNXA2ZmNydm5xGAEggIDAx_WxhvcVGg0IABIAGLCqwre2h9cC",
-    
     "items" : [{
         "kind": "calendar#event",
         "etag": "etag",

@@ -19,6 +19,11 @@ app.get('/events/:eventType', function (req, res) {
         return event.label == req.params.eventType;
     });
 
+    // if foundEvent = list/type/other or whatever
+    // Then just return the eventTypes array 
+
+    // else return the following:
+
     getData(foundEvent).then(retrievedData => {
         if (retrievedData) {
             res.send(retrievedData);
@@ -28,6 +33,7 @@ app.get('/events/:eventType', function (req, res) {
     });
 });
 
+// We need to right some logic here to differentiate between the different requests
 function getData(event) {
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client)
