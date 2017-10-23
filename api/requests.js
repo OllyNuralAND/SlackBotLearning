@@ -27,8 +27,10 @@ module.exports = {
             //   console.log('%s - %s', start, event.summary);
             // }
 
-            
-            formatData(events[0]);
+            let eventsToReturn;
+            for (let eventObject in events) {
+              eventsToReturn.push(formatData(eventObject));
+            }
 
             return events;
           }
@@ -36,7 +38,12 @@ module.exports = {
       },
 
       formatEventData: function(event) {
+
         let eventType = getEventType(event);
+        // Breakout clause if event title isn't of appropriate type do not append to array
+        if (eventType == undefined) {
+          return
+        };
     
         let newEvent = new Object();
         newEvent.id = event.id;
@@ -49,18 +56,18 @@ module.exports = {
         newEvent.endTime = event.end.dateTime;
     
         return newEvent;
-      },
+      }  
+}
 
-      getEventType: function(event) {
-        // refactor later with array if there's time
-        let eventType;
-          if(event.summary.includes("Cop")) {
-            eventType = eventTypes.cop;
-          } else if(event.summary.includes("lunch and learn")) {
-            eventType = eventTypes.landl;
-          } else {
-            eventType = eventTypes.other;
-          }
-        return eventType;
-      }
+function (){ 
+
+}
+
+function getEventType(event) {
+  const foundEvent = eventTypes.find((labelEvent) => {
+    console.log(labelEvent);
+    return event.summary.includes(labelEvent.label);
+  });
+
+  return foundEvent.label;
 }

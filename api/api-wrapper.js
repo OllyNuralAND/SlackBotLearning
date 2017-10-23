@@ -102,5 +102,4 @@ function storeToken(token) {
 
 module.exports = {
     authSetup: authSetup,
-    
 }

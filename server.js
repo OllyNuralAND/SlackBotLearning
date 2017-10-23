@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const apiwrapper = require('./api/api-wrapper');
 const requests = require('./api/requests');
-const eventTypes = require('/api/eventTypes');
+const eventTypes = require('./api/eventTypes');
 let oauth2Client;
 apiwrapper.authSetup((authClientResponse) => {
     oauth2Client = authClientResponse;
@@ -10,8 +10,6 @@ apiwrapper.authSetup((authClientResponse) => {
 
 // TODO - Change this to use environment variables
 const port = 8081;
-
-
 
 // Dynamic endpoint receiving a param of eventtype to test
 app.get('/events/:eventType', function (req, res) {

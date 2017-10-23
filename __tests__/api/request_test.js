@@ -7,17 +7,16 @@ let date = originalDate.format('YYYY-MM-DD');
 
 describe("Checking the data returned from our function are correct given mocks", function() {
     it("Given a single event, a single data object is returned is correct", function(done) {
-        requests.formatEventData(mockData).then((response) => {
+        let response = requests.formatEventData(mockData);
             expect(response.id).toBe('123');
             expect(response.eventType).toBe('CoP');
             expect(response.htmlLink).toBe('www.google.com');
-            expect(response.summary).toBe('summary');
+            expect(response.summary).toBe('CoP meeting blah');
             expect(response.location).toBe('location');
             expect(response.date).toBe(date);
             expect(response.startTime).toBe(dateTime);
             expect(response.endTime).toBe(dateTime);
             done();
-        });
     });
 });
 
@@ -29,7 +28,7 @@ let mockData = {
     "htmlLink": "www.google.com",
     "created": "datetime",
     "updated": "datetime",
-    "summary": "summary",
+    "summary": "CoP meeting blah",
     "description": "string",
     "location": "location",
     "colorId": "string",
