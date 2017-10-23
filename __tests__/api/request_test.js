@@ -18,23 +18,19 @@ describe("Checking the parameters sent to Google Calendar are correct", function
 
 describe("Checking the data returned from our function are correct given mocks", function() {
     it("Given a single event, a single data object is returned is correct", function(done) {
-      jest.setMock('googleapis', mockData);
-
       
-
-      
-            // let response = requests.listEvents();
-            // expect(response.id).toBe('123');
-            // expect(response.eventType).toBe('CoP');
-            // expect(response.htmlLink).toBe('www.google.com');
-            // expect(response.summary).toBe('CoP meeting blah');
-            // expect(response.location).toBe('location');
-            // expect(response.date).toBe(date);
-            // expect(response.startTime).toBe(dateTime);
-            // expect(response.endTime).toBe(dateTime);
-            // done();
+            let response = requests.listEvents();
+            expect(response.id).toBe('123');
+            expect(response.eventType).toBe('CoP');
+            expect(response.htmlLink).toBe('www.google.com');
+            expect(response.summary).toBe('CoP meeting blah');
+            expect(response.location).toBe('location');
+            expect(response.date).toBe(date);
+            expect(response.startTime).toBe(dateTime);
+            expect(response.endTime).toBe(dateTime);
+            done();
           
-      })
+      });
     });
 
 

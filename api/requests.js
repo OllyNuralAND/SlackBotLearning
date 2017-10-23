@@ -5,7 +5,6 @@ module.exports = {
   listEvents: function (auth) {
     return new Promise((resolve, reject) => {
       let calendar = google.calendar('v3');
-      console.log(calendar);
       calendar.events.list({
         auth: auth,
         calendarId: 'primary',
@@ -14,12 +13,10 @@ module.exports = {
         maxResults: 10 // to be edited later
       }, function (err, response) {
         if (err) {
-          console.log('The API returned an error: ' + err);
           reject(err);
         }
         let events = response.items;
         if (events.length == 0) {
-          console.log('No upcoming events found.');
           resolve([]);
         } else {
           if (Array.isArray(events)) {
@@ -35,18 +32,15 @@ module.exports = {
 function formatEvents(events) {
   let eventsToReturn = [];
   for (let eventObject of events) {
-    //console.log(eventObject);
     let formattedEvent = formatEventData(eventObject);
-    if(formattedEvent !== undefined) {
+    if (formattedEvent !== undefined) {
       eventsToReturn.push(formattedEvent);
     }  
   }
-  console.log(eventsToReturn);
   return eventsToReturn;
 }
 
 function formatEventData(event) {
-
   let eventType = getEventType(event);
   if (eventType == undefined) {
     return;
@@ -66,16 +60,13 @@ function formatEventData(event) {
 }  
 
 function getEventType(event) {
-  const foundEvent = eventTypes.find((labelEvent) => {
-    console.log(labelEvent);
-    return event.summary.includes(labelEvent.label);
+  const foundEvent = eventTypes.find((eventTypeCat) => {
+    return event.summary.includes(eventTypeCat.id);
   });
 
   if (foundEvent == undefined) {
-   // console.log('event is undefined');
     return;
   } else {
-   // console.log('event is: ' + foundEvent.label);
-    return foundEvent.label;
+    return foundEvent.id;
   }
 }

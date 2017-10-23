@@ -1,8 +1,8 @@
 let array = [ 
-    {label : "CoP"},
-    {label : "landl"},
-    {label : "learningEvents"},
-    {label : "other"},
+    {id : "CoP"},
+    {id : "landl"},
+    {id : "learningEvents"},
+    {id : "other"},
     // {
     //     label: "cop",
     //     alias: {

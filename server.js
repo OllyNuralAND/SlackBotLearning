@@ -30,11 +30,8 @@ function getData(event) {
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client)
             .then(requestEvents => {
-                console.log("Request events");
-                console.log(requestEvents);
                 resolve(requestEvents);
             }, error => {
-                console.log(error);
                 reject(error);
             });
     });
