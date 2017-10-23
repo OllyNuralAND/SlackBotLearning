@@ -6,14 +6,14 @@ let originalDate = moment();
 let dateTime = originalDate.toISOString();
 let date = originalDate.format('YYYY-MM-DD');
 
-describe("Checking the parameters sent to Google Calendar are correct", function () {
-  it("Given the passed in parameters, it is expected that it is true", function (done) {
-    jest.setMock('googleapis', mockData);
+// describe("Checking the parameters sent to Google Calendar are correct", function () {
+//   it("Given the passed in parameters, it is expected that it is true", function (done) {
+//     jest.setMock('googleapis', mockData);
 
-    google.calendar('v3');
+//     google.calendar('v3');
 
-  });
-});
+//   });
+// });
 
 describe("Checking the data returned from our function are correct given mocks", function () {
   it("Given a single event, a single data object is returned is correct", function (done) {
