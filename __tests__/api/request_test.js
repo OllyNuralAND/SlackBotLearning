@@ -9,7 +9,7 @@ let originalDate = moment();
 let dateTime = originalDate.toISOString();
 let date = originalDate.format('YYYY-MM-DD');
 
-describe("Checking the parameters sent to Google Calendar are correct", function () {
+describe("Checking the get of google API information is returned in the correct format", function () {
 
   it("Should return three responses for getting all learningEvents", function (done) {
     requests.listEvents().then(response => {
@@ -17,7 +17,7 @@ describe("Checking the parameters sent to Google Calendar are correct", function
     })
   });
 
-  it("Given a single event, a single data object is returned is correct", function (done) {
+  it("Check that the first event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
     requests.listEvents().then(response => {
       expect(response[0].id).toBe('123');
       expect(response[0].eventType).toBe('CoP');
