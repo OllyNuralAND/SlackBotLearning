@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
-const apiwrapper = require('./api/api-wrapper');
+const googleauth = require('./api/googleauth');
 const requests = require('./api/requests');
 const eventTypes = require('./api/eventTypes');
+// While we don't have any auth, it will throw a reject promise
+// So it will return [].
 let oauth2Client;
-apiwrapper.authSetup((authClientResponse) => {
+googleauth.authSetup((authClientResponse) => {
     oauth2Client = authClientResponse;
 });
 
@@ -18,7 +20,7 @@ app.get('/events/:eventType', function (req, res) {
     });
 
     getData(foundEvent).then(retrievedData => {
-        if (foundEvent) {
+        if (retrievedData) {
             res.send(retrievedData);
         } else {
             res.send([]);

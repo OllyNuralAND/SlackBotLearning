@@ -1,4 +1,4 @@
-let google = require('googleapis');
+const google = require('googleapis');
 const eventTypes = require("./eventTypes");
 
 module.exports = {
