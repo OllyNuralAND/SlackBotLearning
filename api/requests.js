@@ -4,7 +4,9 @@ const eventTypes = require("./eventTypes");
 module.exports = {
   listEvents: function (auth) {
     return new Promise((resolve, reject) => {
+      
       let calendar = google.calendar('v3');
+
       calendar.events.list({
         auth: auth,
         calendarId: 'primary',
@@ -13,6 +15,8 @@ module.exports = {
         maxResults: 10 // to be edited later
       }, function (err, response) {
         if (err) {
+          console.log('ERROR:');
+          console.log(err);
           reject(err);
         }
         let events = response.items;
