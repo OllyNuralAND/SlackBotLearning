@@ -7,7 +7,7 @@ let date = originalDate.format('YYYY-MM-DD');
 
 describe("Checking the data returned from our function are correct given mocks", function() {
     it("Given a single event, a single data object is returned is correct", function(done) {
-        requests.formatData(mockData).then((response) => {
+        requests.formatEventData(mockData).then((response) => {
             expect(response.id).toBe('123');
             expect(response.eventType).toBe('CoP');
             expect(response.htmlLink).toBe('www.google.com');

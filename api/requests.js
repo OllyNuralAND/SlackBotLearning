@@ -1,9 +1,5 @@
-let server = require(server.js);
 var google = require('googleapis');
 const eventTypes = require("./eventTypes");
-
-
-
 
 module.exports = {
     listEvents: function(auth) {
@@ -32,26 +28,39 @@ module.exports = {
             // }
 
             
-            addInEventType(events[i]);
+            formatData(events[0]);
 
             return events;
           }
         });
-      }
-  }
-  //Calender onject
+      },
 
-  //get eventType from server.js
-  function addInEventType(event) {
-    // refactor later with array if there's time
-    console.log(server);
-    let eventtype;
-      if(event.summary.includes("Cop")) {
-        eventtype = eventTypes.cop;
-      } else if(event.summary.includes("lunch and learn")) {
-        eventtype = eventTypes.landl;
-      } else {
-        eventtype = eventTypes.other;
-      }
+      formatEventData: function(event) {
+        let eventType = getEventType(event);
+    
+        let newEvent = new Object();
+        newEvent.id = event.id;
+        newEvent.eventType = eventType;
+        newEvent.htmlLink = event.htmlLink;
+        newEvent.summary = event.summary;
+        newEvent.location = event.location;
+        newEvent.date = event.start.date;
+        newEvent.startTime = event.start.dateTime;
+        newEvent.endTime = event.end.dateTime;
+    
+        return newEvent;
+      },
 
-  }
+      getEventType: function(event) {
+        // refactor later with array if there's time
+        let eventType;
+          if(event.summary.includes("Cop")) {
+            eventType = eventTypes.cop;
+          } else if(event.summary.includes("lunch and learn")) {
+            eventType = eventTypes.landl;
+          } else {
+            eventType = eventTypes.other;
+          }
+        return eventType;
+      }
+}

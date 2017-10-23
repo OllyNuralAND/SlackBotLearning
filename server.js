@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const apiwrapper = require('./api/api-wrapper');
 const requests = require('./api/requests');
-const eventTypes = require('./eventTypes');
+const eventTypes = require('/api/eventTypes');
 let oauth2Client;
 apiwrapper.authSetup((authClientResponse) => {
     oauth2Client = authClientResponse;

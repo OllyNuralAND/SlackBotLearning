@@ -1,4 +1,4 @@
-modeule.exports.eventTypes = [ 
+module.exports.eventTypes = [ 
     {label : "cop"},
     {label : "landl"},
     {label : "learningEvents"},
