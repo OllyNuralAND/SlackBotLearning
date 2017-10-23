@@ -13,7 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "debug": "node --nolazy --inspect-brk=5858 server.js"
   },
   "repository": {
     "type": "git",

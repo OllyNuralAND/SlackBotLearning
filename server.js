@@ -16,16 +16,28 @@ app.get('/events/:eventType', function (req, res) {
     const foundEvent = eventTypes.find((event) => {
         return event.label == req.params.eventType;
     });
-    if (foundEvent) {
-        res.send(getData(foundEvent));
-    } else {
-        res.send([]);
-    }
-})
+
+    getData(foundEvent).then(retrievedData => {
+        if (foundEvent) {
+            res.send(retrievedData);
+        } else {
+            res.send([]);
+        }
+    });
+});
 
 function getData(event) {
-    requests.listEvents(oauth2Client);
-    return (event);
+    return new Promise ((resolve, reject) => {
+        requests.listEvents(oauth2Client)
+            .then(requestEvents => {
+                console.log("Request events");
+                console.log(requestEvents);
+                resolve(requestEvents);
+            }, error => {
+                console.log(error);
+                reject(error);
+            });
+    });
 }
 
 // Else any requests not already hit will end up here for a 404

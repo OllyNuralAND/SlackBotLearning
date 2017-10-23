@@ -6,7 +6,7 @@ let array = [
     // {
     //     label: "cop",
     //     alias: {
-    //         alias1: "Community of Pra"
+    //         alias1: "Community of Practice"
     //     }
     // }
 ];
