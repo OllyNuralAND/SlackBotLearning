@@ -60,7 +60,16 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Need to decided on test framework - Jasmin or Jest
+Jest software is used to run tests. 
+
+In certain cases, when the Google Calendar api is required to return calendar events, a mock data set is used to represent this data (found under __mock__). 
+
+In order to run the tests, type this into the terminal: 
+
+```
+npm run tests
+```
+
 
 ### Break down into end to end tests
 
@@ -78,7 +87,7 @@ jest
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+TBA
 
 ## Built With
 
@@ -88,9 +97,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
+1.0 
+
 ## Authors
+Nate Williamson-Walsh, Oliver Nural, Mickell Crawford, Graziano Statello, and Jasmien Cels
 
 ## License
+
+© 2017 AND Digital. All rights reserved.
 
 ## Acknowledgments
 
