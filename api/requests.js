@@ -11,7 +11,7 @@ module.exports = {
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
         //   timeMax: (new Date()).toISOString(),
-        maxResults: 10 // to be edited later
+        maxResults: 100 // to be edited later
       }, function (err, response) {
         if (err) {
           console.log('ERROR:');

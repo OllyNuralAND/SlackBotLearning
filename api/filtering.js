@@ -4,12 +4,15 @@ function formatEvents(events, eventFilter) {
   // TODO - Move logic from callback google api request to here
   // To check whether singular or array
   // Then call respective functions as it's doing already
-  console.log(eventFilter);
+  //console.log(eventFilter);
+  //console.log(events);
   if (events.length == 0) {
-    console.log(eventFilter);
+    console.log("length is 0");
     return ([]);
   } else if (events.length == 1) {
     let notFilteredArray = [];
+    console.log("length is one");
+    console.log(notFilteredArray);
     const notFilteredEvent = formatEventData(events);
     notFilteredArray.push(notFilteredEvent);
     //filter it by the event type required
@@ -23,6 +26,8 @@ function formatEvents(events, eventFilter) {
       console.log(formattedEvent);
       if (formattedEvent !== undefined) {
         notFilteredEvents.push(formattedEvent);
+        console.log("length is many");
+        console.log(notFilteredEvents.toString);
       }
     }
     //Filters the array to remove all eventTypes that are not required 
@@ -62,17 +67,29 @@ function formatEventData(event) {
 }
 
 function getEventType(event) {
-  const foundEvent = eventTypes.find((eventTypeCat) => {
-    // Convert event.summary to lowercase
-    // loop over labels and check if summary includes each label
-    // if it does then assign it appropriate id
-    return event.summary.includes(eventTypeCat.id);
-  });
+
+  const eventSummaryLC = event.summary.toLowerCase();
+
+  let foundEvent; 
+
+  //Assign the potential EventTypes labels the correct ID
+  for (let eventTypeCat of eventTypes) {
+    // For every label within that event type
+    for (let label of eventTypeCat.labels) {
+      // If the summary includes that label
+       if (eventSummaryLC.includes(label)) {
+         // Return that event type's ID
+         foundEvent =  eventTypeCat.id;
+         console.log("Event ID");
+         console.log(foundEvent);
+       }
+    }
+  }
 
   if (foundEvent == undefined) {
     return;
   } else {
-    return foundEvent.id;
+    return foundEvent;
   }
 }
 
