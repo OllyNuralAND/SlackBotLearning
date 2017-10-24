@@ -1,9 +1,10 @@
-const fs = jest.genMockFromModule('googleapis');
+jest.genMockFromModule('googleapis');
 
-let moment = require('moment');
-let originalDate = moment("2013-08-26 16:55:00");
-let dateTime = originalDate.toISOString();
-let date = originalDate.format('YYYY-MM-DD');
+const moment = require('moment');
+
+const originalDate = moment("2013-08-26 16:55:00");
+const dateTime =  originalDate.toISOString();
+const date = originalDate.format('YYYY-MM-DD');
 
 const googleapis = {
     calendar: function(version) {
@@ -15,12 +16,16 @@ const googleapis = {
                   
             }
         }
-    }
+    },
+    originalDate: originalDate,
+    dateTime: dateTime,
+    date: date
 }
 
+// module export not at bottom because mockData is huge
 module.exports = googleapis;
 
-let mockData = 
+const mockData = 
     {
     "kind": "calendar#events",
     "etag": "\"p32oalglnmq3te0g\"",

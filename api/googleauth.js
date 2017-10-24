@@ -1,5 +1,4 @@
-// All Google auth code
-
+// All Google auth code from their example AUTH stuff
 let fs = require('fs');
 let readline = require('readline');
 let google = require('googleapis');
@@ -25,7 +24,6 @@ function authSetup(callback) {
         authorize(JSON.parse(content), callback);
     });
 }
-
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the

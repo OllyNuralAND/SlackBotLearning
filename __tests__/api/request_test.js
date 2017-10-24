@@ -1,13 +1,13 @@
-let requests = require('../../api/requests');
-let moment = require('moment');
+const requests = require('../../api/requests');
+const moment = require('moment');
 jest.mock('googleapis');
-let google = require('googleapis');
+const google = require('googleapis');
 
 // This needs to be using a specific time 
 // Test delays means the times are sometimes out of sync
-let originalDate = moment("2013-08-26 16:55:00");
-let dateTime = originalDate.toISOString();
-let date = originalDate.format('YYYY-MM-DD');
+const originalDate = google.originalDate;
+const dateTime = google.dateTime;
+const date = google.date;
 
 describe("Checking the get of google API information is returned in the correct format", function () {
 
