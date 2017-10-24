@@ -1,5 +1,6 @@
 const app = require('../server.js');
 const request = require('supertest');
+const eventTypes = require('../api/eventTypes');
 
 describe("Server endpoint testing", function() {
   
@@ -47,6 +48,8 @@ describe("Server endpoint testing", function() {
         done();
       })
     }); 
+
+    // it("returns a list of events ")
 
   });
 

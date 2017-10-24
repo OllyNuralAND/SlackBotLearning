@@ -2,7 +2,7 @@ const google = require('googleapis');
 const eventTypes = require("./eventTypes");
 
 function formatEvents(events) {
-  let eventsToReturn = [];
+  const eventsToReturn = [];
   for (let eventObject of events) {
     let formattedEvent = formatEventData(eventObject);
     if (formattedEvent !== undefined) {
@@ -13,12 +13,12 @@ function formatEvents(events) {
 }
 
 function formatEventData(event) {
-  let eventType = getEventType(event);
+  const eventType = getEventType(event);
   if (eventType == undefined) {
     return;
   }
 
-  let newEvent = {
+  return newEvent = {
     id: event.id,
     eventType: eventType,
     htmlLink: event.htmlLink,
@@ -28,8 +28,6 @@ function formatEventData(event) {
     startTime: event.start.dateTime,
     endTime: event.end.dateTime
   }
-
-  return newEvent;
 }  
 
 function getEventType(event) {
