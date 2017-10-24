@@ -17,7 +17,10 @@ function formatEvents(events, eventFilter) {
   } else {
     let notFilteredEvents = [];
     for (let eventObject of events) {
+      console.log(eventObject);
       let formattedEvent = formatEventData(eventObject);
+      console.log("Formatted event");
+      console.log(formattedEvent);
       if (formattedEvent !== undefined) {
         notFilteredEvents.push(formattedEvent);
       }
@@ -41,6 +44,7 @@ function filterArrayByEventType(notFilteredEvents, eventFilter) {
 
 function formatEventData(event) {
   const eventType = getEventType(event);
+  console.log(eventType);
   if (eventType == undefined) {
     return;
   }
@@ -59,6 +63,9 @@ function formatEventData(event) {
 
 function getEventType(event) {
   const foundEvent = eventTypes.find((eventTypeCat) => {
+    // Convert event.summary to lowercase
+    // loop over labels and check if summary includes each label
+    // if it does then assign it appropriate id
     return event.summary.includes(eventTypeCat.id);
   });
 
