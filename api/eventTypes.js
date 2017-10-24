@@ -1,15 +1,20 @@
+// Case insensitive
+
 let array = [ 
     {
         id : "CoP",
         labels : [
-            "Community of Practice",
-            "cop"
+            "community of practice",
+            "community of practices",
+            "cop",
+            "cops"
         ]
     },
     {
         id : "landl",
         labels : [
             "Lunch and learn",
+            "lunch and learns",
             "l & l",
             "l&l",
             "landl",
@@ -24,12 +29,6 @@ let array = [
             "learning events",
             "learn events",
             "learning event"
-        ]
-    },
-    {
-        id : "other",
-        labels: [
-            "other"
         ]
     }
 ];
