@@ -34,8 +34,8 @@ describe("Server endpoint testing", function() {
       })
     }); 
     
-    it("returns a list of events on a GET request on '/events/list' from eventTypes", function(done) {
-      request(app).get('/events/list').then((response) => {
+    it("returns a list of events on a GET request on '/event-types' from eventTypes", function(done) {
+      request(app).get('/event-types').then((response) => {
         expect(response.statusCode).toBe(200);
         expect(response.body).toEqual(eventTypes);
         done();
