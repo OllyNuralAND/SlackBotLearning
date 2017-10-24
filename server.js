@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const googleauth = require('./api/googleauth');
 const requests = require('./api/requests');
+const filters = require('./api/filtering');
 const eventTypes = require('./api/eventTypes');
 // While we don't have any auth, it will throw a reject promise
 // So it will return [].
@@ -38,7 +39,7 @@ function getData(event) {
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client)
             .then(requestEvents => {
-                resolve(requestEvents);
+                let filteredEvents = filtering.formatData(requestEvents);
             }, error => {
                 reject(error);
             });
