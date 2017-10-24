@@ -1,6 +1,19 @@
 // Case insensitive
 
-let array = [ 
+// Put learningevents at the top for now
+// Using it as a reference pointer
+
+let array = [
+    {
+        id : "learningevents",
+        labels : [
+            "learningevents",
+            "learnevents",
+            "learning events",
+            "learn events",
+            "learning event"
+        ]
+    },
     {
         id : "cop",
         labels : [
@@ -20,16 +33,6 @@ let array = [
             "lunch & learn", 
             "landl",
             "lunchandlearn"
-        ]
-    },
-    {
-        id : "learningevents",
-        labels : [
-            "learningevents",
-            "learnevents",
-            "learning events",
-            "learn events",
-            "learning event"
         ]
     }
 ];

@@ -38,7 +38,7 @@ function formatEvents(events, eventFilter) {
 
 
 function filterArrayByEventType(notFilteredEvents, eventFilter) {
-  if (eventFilter === "learningEvents") {
+  if (eventFilter === eventTypes[0].id) {
     return notFilteredEvents; // no need to filter; already contains just both
   } else {
     const filteredEvents = notFilteredEvents.filter(function (i) {
