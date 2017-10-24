@@ -2,7 +2,7 @@
 
 let array = [ 
     {
-        id : "CoP",
+        id : "cop",
         labels : [
             "community of practice",
             "community of practices",
@@ -22,7 +22,7 @@ let array = [
         ]
     },
     {
-        id : "learningEvents",
+        id : "learningevents",
         labels : [
             "learningevents",
             "learnevents",
