@@ -30,7 +30,33 @@ describe("Checking the get of google API information is returned in the correct 
       expect(response[0].endTime).toBe(dateTime);
       done();
     });
-    
+  });
 
+  it("Check that the second event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
+    requests.listEvents().then(response => {
+      expect(response[1].id).toBe('124');
+      expect(response[1].eventType).toBe('landl');
+      expect(response[1].htmlLink).toBe('www.google.com');
+      expect(response[1].summary).toBe('landl meeting blah');
+      expect(response[1].location).toBe('location');
+      expect(response[1].date).toBe(date);
+      expect(response[1].startTime).toBe(dateTime);
+      expect(response[1].endTime).toBe(dateTime);
+      done();
+    });
+  });
+
+  it("Check that the second event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
+    requests.listEvents().then(response => {
+      expect(response[2].id).toBe('125');
+      expect(response[2].eventType).toBe('other');
+      expect(response[2].htmlLink).toBe('www.google.com');
+      expect(response[2].summary).toBe('other meeting blah');
+      expect(response[2].location).toBe('location');
+      expect(response[2].date).toBe(date);
+      expect(response[2].startTime).toBe(dateTime);
+      expect(response[2].endTime).toBe(dateTime);
+      done();
+    });
   });
 });
