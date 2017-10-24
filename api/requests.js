@@ -1,32 +1,76 @@
-var google = require('googleapis');
+const google = require('googleapis');
+const eventTypes = require("./eventTypes");
+
+function formatEvents(events) {
+  const eventsToReturn = [];
+  for (let eventObject of events) {
+    let formattedEvent = formatEventData(eventObject);
+    if (formattedEvent !== undefined) {
+      eventsToReturn.push(formattedEvent);
+    }  
+  }
+  return eventsToReturn;
+}
+
+function formatEventData(event) {
+  const eventType = getEventType(event);
+  if (eventType == undefined) {
+    return;
+  }
+
+  return newEvent = {
+    id: event.id,
+    eventType: eventType,
+    htmlLink: event.htmlLink,
+    summary: event.summary,
+    location: event.location,
+    date: event.start.date,
+    startTime: event.start.dateTime,
+    endTime: event.end.dateTime
+  }
+}  
+
+function getEventType(event) {
+  const foundEvent = eventTypes.find((eventTypeCat) => {
+    return event.summary.includes(eventTypeCat.id);
+  });
+
+  if (foundEvent == undefined) {
+    return;
+  } else {
+    return foundEvent.id;
+  }
+}
 
 module.exports = {
-    listEvents: function(auth) {
-        var calendar = google.calendar('v3');
-        calendar.events.list({
-          auth: auth,
-          calendarId: 'primary',
-          timeMin: (new Date()).toISOString(),
+  listEvents: function (auth) {
+    return new Promise((resolve, reject) => {
+      
+      let calendar = google.calendar('v3');
+
+      calendar.events.list({
+        auth: auth,
+        calendarId: 'primary',
+        timeMin: (new Date()).toISOString(),
         //   timeMax: (new Date()).toISOString(),
-          maxResults: 10 // to be edited later
-        }, function(err, response) {
-          if (err) {
-            console.log('The API returned an error: ' + err);
-            return;
-          }
-          var events = response.items;
-          if (events.length == 0) {
-            console.log('No upcoming events found.');
-            return [];
+        maxResults: 10 // to be edited later
+      }, function (err, response) {
+        if (err) {
+          console.log('ERROR:');
+          console.log(err);
+          reject(err);
+        }
+        let events = response.items;
+        if (events.length == 0) {
+          resolve([]);
+        } else {
+          if (Array.isArray(events)) {
+            resolve(formatEvents(events));
           } else {
-            // console.log('Upcoming 10 events:');
-            // for (var i = 0; i < events.length; i++) {
-            //   var event = events[i];
-            //   var start = event.start.dateTime || event.start.date;
-            //   console.log('%s - %s', start, event.summary);
-            // }
-            return events;
+            resolve(formatEventData(events));
           }
-        });
-      }
+        }
+      });
+    });
   }
+}
