@@ -32,6 +32,12 @@ You will need to authenticate with the Google apis the first time you run this a
 
 Follow [these] (https://developers.google.com/google-apps/calendar/quickstart/nodejsnp) instructions to generate a client_secret.json. 
 
+Once you have downloaded the client_secret_XXXXXXXXXX.json
+
+Rename it to client_secret.json
+
+Move it to the highest level in the directory
+
 ### Prerequisites
 
 Install dependencies using Node Package Manager:
@@ -46,6 +52,14 @@ run
 ```
 node server.js
 ```
+
+You will be promped to authenticate with Google.
+
+Enter the URL they provide in the terminal into your browser and authenticate.
+
+Enter the code provided in the browser back into the terminal and hit enter. 
+
+Done!
 
 ## Running the tests
 
