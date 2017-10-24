@@ -13,8 +13,13 @@ googleauth.authSetup((authClientResponse) => {
 // TODO - Change this to use environment variables
 const port = 8081;
 
+app.get('/event-types', function(req, res) {
+    res.send(eventTypes);
+})
+
 // Dynamic endpoint receiving a param of eventtype to test
 app.get('/events/:eventType', function (req, res) {
+
     const foundEvent = eventTypes.find((event) => {
         return event.label == req.params.eventType;
     });

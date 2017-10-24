@@ -13,7 +13,7 @@ describe("Checking the get of google API information is returned in the correct 
 
   it("Should return three responses for getting all learningEvents", function (done) {
     requests.listEvents().then(response => {
-      expect(response).toHaveLength(3);
+      expect(response).toHaveLength(2);
       done();
     })
   });
@@ -45,18 +45,25 @@ describe("Checking the get of google API information is returned in the correct 
       done();
     });
   });
+});
 
-  it("Check that the second event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
+
+describe("Checking that the data returned contains a certain number of elements in the returned array ", function () {
+
+  it("Check that the array is not empty from #listEvents", function (done) {
     requests.listEvents().then(response => {
-      expect(response[2].id).toBe('125');
-      expect(response[2].eventType).toBe('other');
-      expect(response[2].htmlLink).toBe('www.google.com');
-      expect(response[2].summary).toBe('other meeting blah');
-      expect(response[2].location).toBe('location');
-      expect(response[2].date).toBe(date);
-      expect(response[2].startTime).toBe(dateTime);
-      expect(response[2].endTime).toBe(dateTime);
+      expect(response).not.toBeNull();
       done();
     });
   });
+
+
+  it("Check that the array contains one element that contains CoP from #listEvents", function (done) {
+    requests.listEvents().then(response => {
+      expect(response.includes("CoP"));
+      done();
+    });
+  });
+
 });
+
