@@ -79,6 +79,9 @@ function getEventType(event) {
       // If the summary includes that label
        if (eventSummaryLC.includes(label)) {
          // Return that event type's ID
+
+         console.log("eventtypecat");
+         console.log(eventTypeCat);
          foundEvent =  eventTypeCat.id;
          console.log("Event ID");
          console.log(foundEvent);
@@ -87,6 +90,7 @@ function getEventType(event) {
   }
 
   if (foundEvent == undefined) {
+    console.log("FoundEvent was undefined");
     return;
   } else {
     return foundEvent;

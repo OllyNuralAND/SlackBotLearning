@@ -22,8 +22,14 @@ app.get('/event-types', function(req, res) {
 app.get('/events/:eventType', function (req, res) {
 
     const foundEvent = eventTypes.find((event) => {
+        console.log("events");
+        console.log(event);
         return event.id == req.params.eventType;
     });
+
+    if (!foundEvent) {
+        res.sendStatus(404);
+    }
 
     getData(foundEvent).then(retrievedData => {
         if (retrievedData) {
