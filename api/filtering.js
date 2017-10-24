@@ -1,11 +1,6 @@
 const eventTypes = require("./eventTypes");
 
 function formatEvents(events, eventFilter) {
-  // TODO - Move logic from callback google api request to here
-  // To check whether singular or array
-  // Then call respective functions as it's doing already
-  //console.log(eventFilter);
-  //console.log(events);
   if (events.length == 0) {
     return ([]);
   } else if (events.length == 1) {
