@@ -2,6 +2,15 @@ const google = require('googleapis');
 const eventTypes = require("./eventTypes");
 
 function formatEvents(events) {
+// TODO - Move logic from callback google api request to here
+// To check whether singular or array
+// Then call respective functions as it's doing already
+
+// Add parameter to this function to say what it is filtering by:
+// e.g 'cop', 'lunchandlearn', or 'all'
+
+// return an array of elements filtered
+
   const eventsToReturn = [];
   for (let eventObject of events) {
     let formattedEvent = formatEventData(eventObject);
@@ -64,11 +73,12 @@ module.exports = {
         if (events.length == 0) {
           resolve([]);
         } else {
-          if (Array.isArray(events)) {
-            resolve(formatEvents(events));
-          } else {
-            resolve(formatEventData(events));
-          }
+          // if (Array.isArray(events)) {
+          //   resolve(formatEvents(events));
+          // } else {
+          //   resolve(formatEventData(events));
+          // }
+          resolve(events);
         }
       });
     });

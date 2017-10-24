@@ -24,11 +24,6 @@ app.get('/events/:eventType', function (req, res) {
         return event.label == req.params.eventType;
     });
 
-    // if foundEvent = list/type/other or whatever
-    // Then just return the eventTypes array 
-
-    // else return the following:
-
     getData(foundEvent).then(retrievedData => {
         if (retrievedData) {
             res.send(retrievedData);
