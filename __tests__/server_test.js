@@ -1,5 +1,5 @@
-var app = require('../server.js');
-var request = require('supertest');
+const app = require('../server.js');
+const request = require('supertest');
 
 describe("Server endpoint testing", function() {
   

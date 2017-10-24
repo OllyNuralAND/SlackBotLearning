@@ -1,6 +1,49 @@
 const google = require('googleapis');
 const eventTypes = require("./eventTypes");
 
+function formatEvents(events) {
+  let eventsToReturn = [];
+  for (let eventObject of events) {
+    let formattedEvent = formatEventData(eventObject);
+    if (formattedEvent !== undefined) {
+      eventsToReturn.push(formattedEvent);
+    }  
+  }
+  return eventsToReturn;
+}
+
+function formatEventData(event) {
+  let eventType = getEventType(event);
+  if (eventType == undefined) {
+    return;
+  }
+
+  let newEvent = {
+    id: event.id,
+    eventType: eventType,
+    htmlLink: event.htmlLink,
+    summary: event.summary,
+    location: event.location,
+    date: event.start.date,
+    startTime: event.start.dateTime,
+    endTime: event.end.dateTime
+  }
+
+  return newEvent;
+}  
+
+function getEventType(event) {
+  const foundEvent = eventTypes.find((eventTypeCat) => {
+    return event.summary.includes(eventTypeCat.id);
+  });
+
+  if (foundEvent == undefined) {
+    return;
+  } else {
+    return foundEvent.id;
+  }
+}
+
 module.exports = {
   listEvents: function (auth) {
     return new Promise((resolve, reject) => {
@@ -31,46 +74,5 @@ module.exports = {
         }
       });
     });
-  }
-}
-function formatEvents(events) {
-  let eventsToReturn = [];
-  for (let eventObject of events) {
-    let formattedEvent = formatEventData(eventObject);
-    if (formattedEvent !== undefined) {
-      eventsToReturn.push(formattedEvent);
-    }  
-  }
-  return eventsToReturn;
-}
-
-function formatEventData(event) {
-  let eventType = getEventType(event);
-  if (eventType == undefined) {
-    return;
-  }
-
-  let newEvent = new Object();
-  newEvent.id = event.id;
-  newEvent.eventType = eventType;
-  newEvent.htmlLink = event.htmlLink;
-  newEvent.summary = event.summary;
-  newEvent.location = event.location;
-  newEvent.date = event.start.date;
-  newEvent.startTime = event.start.dateTime;
-  newEvent.endTime = event.end.dateTime;
-
-  return newEvent;
-}  
-
-function getEventType(event) {
-  const foundEvent = eventTypes.find((eventTypeCat) => {
-    return event.summary.includes(eventTypeCat.id);
-  });
-
-  if (foundEvent == undefined) {
-    return;
-  } else {
-    return foundEvent.id;
   }
 }
