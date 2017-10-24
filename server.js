@@ -15,6 +15,13 @@ const port = 8081;
 
 // Dynamic endpoint receiving a param of eventtype to test
 app.get('/events/:eventType', function (req, res) {
+
+    // If the eventType param is list return our list of different events
+    if (req.params.eventType == "list") {
+        res.send(eventTypes);
+        return;
+    } 
+
     const foundEvent = eventTypes.find((event) => {
         return event.label == req.params.eventType;
     });

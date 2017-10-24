@@ -33,6 +33,14 @@ describe("Server endpoint testing", function() {
         done();
       })
     }); 
+    
+    it("returns a list of events on a GET request on '/events/list' from eventTypes", function(done) {
+      request(app).get('/events/list').then((response) => {
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toEqual(eventTypes);
+        done();
+      })
+    })
 
     it("returns an empty array on a GET request on '/events/somebadevent'", function (done) {
       request(app).get('/events/somebadevent').then((response) => {
@@ -48,8 +56,6 @@ describe("Server endpoint testing", function() {
         done();
       })
     }); 
-
-    // it("returns a list of events ")
 
   });
 
