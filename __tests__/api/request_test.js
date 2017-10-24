@@ -60,3 +60,21 @@ describe("Checking the get of google API information is returned in the correct 
     });
   });
 });
+
+describe("Checking that the data returned contains a certain number of elements in the returned array ", function () {
+
+  it("Check that the array is not empty from #listEvents", function (done) {
+    requests.listEvents().then(response => {
+      expect(response).not.toBeNull();
+      done();
+    });
+  });
+
+  it("Check that the array contains three elements from #listEvents", function (done) {
+    requests.listEvents().then(response => {
+      expect(response).toHaveLength(3);
+      done();
+    });
+  });
+
+});// end of describe 
