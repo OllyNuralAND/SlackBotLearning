@@ -32,6 +32,12 @@ You will need to authenticate with the Google apis the first time you run this a
 
 Follow [these] (https://developers.google.com/google-apps/calendar/quickstart/nodejsnp) instructions to generate a client_secret.json. 
 
+Once you have downloaded the client_secret_XXXXXXXXXX.json
+
+Rename it to client_secret.json
+
+Move it to the highest level in the directory
+
 ### Prerequisites
 
 Install dependencies using Node Package Manager:
@@ -42,23 +48,16 @@ npm install
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+run
 ```
-Give the example
+node server.js
 ```
 
-And repeat
+You will be promped to authenticate with Google.
 
-```
-until finished
-```
+Enter the URL they provide in the terminal into your browser and authenticate.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
+Enter the code provided in the browser back into the terminal and hit enter. 
 
 Jest software is used to run tests. 
 
@@ -70,13 +69,10 @@ In order to run the tests, type this into the terminal:
 npm run tests
 ```
 
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+## Running the tests
 
 ```
-Give an example
+npm run test
 ```
 
 ### And coding style tests
