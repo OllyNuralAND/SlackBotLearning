@@ -12,7 +12,7 @@ describe("Server endpoint testing", function() {
     });
 
     it("returns a 200 on for a GET request on '/events/learningEvents'", function (done) {
-      request(app).get('/events/learningEvents').then((response) => {
+      request(app).get('/events/learningevents').then((response) => {
         expect(response.statusCode).toBe(200);
         done();
       })
@@ -42,16 +42,15 @@ describe("Server endpoint testing", function() {
       })
     })
 
-    it("returns an empty array on a GET request on '/events/somebadevent'", function (done) {
+    it("returns an 404 on an incorrect GET request on '/events/somebadevent'", function (done) {
       request(app).get('/events/somebadevent').then((response) => {
-        expect(response.statusCode).toBe(200);
-        expect(response.body).toEqual([]);
+        expect(response.statusCode).toBe(404);
         done();
       })
     }); 
 
     it("returns a 404 on for a GET request on '/badevent/somebadevent'", function (done) {
-      request(app).get('/somebadevent/somebadevent').then((response) => {
+      request(app).get('/badevent/somebadevent').then((response) => {
         expect(response.statusCode).toBe(404);
         done();
       })

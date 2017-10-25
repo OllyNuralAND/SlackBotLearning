@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const googleauth = require('./api/googleauth');
 const requests = require('./api/requests');
+const filtering = require('./api/filtering');
 const eventTypes = require('./api/eventTypes');
 // While we don't have any auth, it will throw a reject promise
 // So it will return [].
@@ -21,13 +22,13 @@ app.get('/event-types', function(req, res) {
 app.get('/events/:eventType', function (req, res) {
 
     const foundEvent = eventTypes.find((event) => {
-        return event.label == req.params.eventType;
+        return event.id == req.params.eventType;
     });
 
-    // if foundEvent = list/type/other or whatever
-    // Then just return the eventTypes array 
-
-    // else return the following:
+    if (!foundEvent) {
+        res.sendStatus(404);
+        return;
+    }
 
     getData(foundEvent).then(retrievedData => {
         if (retrievedData) {
@@ -43,7 +44,8 @@ function getData(event) {
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client)
             .then(requestEvents => {
-                resolve(requestEvents);
+                let filteredEvents = filtering.formatEvents(requestEvents, event.id);
+                resolve(filteredEvents);
             }, error => {
                 reject(error);
             });
@@ -57,7 +59,7 @@ app.get('/', function (req, res) {
 
 // Start the server! 
 app.listen(port, function () {
-  console.log('Example app listening on port ' + port);
+  console.log(`Example app listening on ${port} `);
 });
 
 // Export the app so we can run tests against it! 

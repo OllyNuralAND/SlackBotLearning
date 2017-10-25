@@ -59,7 +59,15 @@ Enter the URL they provide in the terminal into your browser and authenticate.
 
 Enter the code provided in the browser back into the terminal and hit enter. 
 
-Done!
+Jest software is used to run tests. 
+
+In certain cases, when the Google Calendar api is required to return calendar events, a mock data set is used to represent this data (found under __mock__). 
+
+In order to run the tests, type this into the terminal: 
+
+```
+npm run tests
+```
 
 ## Running the tests
 
@@ -75,7 +83,7 @@ jest
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+TBA
 
 ## Built With
 
@@ -85,9 +93,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
+1.0 
+
 ## Authors
+Nate Williamson-Walsh, Oliver Nural, Mickell Crawford, Graziano Statello, and Jasmien Cels
 
 ## License
+
+© 2017 AND Digital. All rights reserved.
 
 ## Acknowledgments
 

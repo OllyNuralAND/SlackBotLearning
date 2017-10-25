@@ -1,51 +1,10 @@
 const google = require('googleapis');
-const eventTypes = require("./eventTypes");
 
-function formatEvents(events) {
-  const eventsToReturn = [];
-  for (let eventObject of events) {
-    let formattedEvent = formatEventData(eventObject);
-    if (formattedEvent !== undefined) {
-      eventsToReturn.push(formattedEvent);
-    }  
-  }
-  return eventsToReturn;
-}
-
-function formatEventData(event) {
-  const eventType = getEventType(event);
-  if (eventType == undefined) {
-    return;
-  }
-
-  return newEvent = {
-    id: event.id,
-    eventType: eventType,
-    htmlLink: event.htmlLink,
-    summary: event.summary,
-    location: event.location,
-    date: event.start.date,
-    startTime: event.start.dateTime,
-    endTime: event.end.dateTime
-  }
-}  
-
-function getEventType(event) {
-  const foundEvent = eventTypes.find((eventTypeCat) => {
-    return event.summary.includes(eventTypeCat.id);
-  });
-
-  if (foundEvent == undefined) {
-    return;
-  } else {
-    return foundEvent.id;
-  }
-}
 
 module.exports = {
   listEvents: function (auth) {
-    return new Promise((resolve, reject) => {
-      
+    return new Promise((resolve, reject, timeLimit) => {
+
       let calendar = google.calendar('v3');
 
       calendar.events.list({
@@ -53,7 +12,8 @@ module.exports = {
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
         //   timeMax: (new Date()).toISOString(),
-        maxResults: 10 // to be edited later
+        maxResults: 100, // to be edited later
+        timeMax: timeLimit
       }, function (err, response) {
         if (err) {
           console.log('ERROR:');
@@ -64,11 +24,7 @@ module.exports = {
         if (events.length == 0) {
           resolve([]);
         } else {
-          if (Array.isArray(events)) {
-            resolve(formatEvents(events));
-          } else {
-            resolve(formatEventData(events));
-          }
+          resolve(events);
         }
       });
     });
