@@ -3,7 +3,7 @@ const google = require('googleapis');
 
 module.exports = {
   listEvents: function (auth) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject, timeLimit) => {
 
       let calendar = google.calendar('v3');
 
@@ -12,7 +12,8 @@ module.exports = {
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
         //   timeMax: (new Date()).toISOString(),
-        maxResults: 100 // to be edited later
+        maxResults: 100, // to be edited later
+        timeMax: timeLimit
       }, function (err, response) {
         if (err) {
           console.log('ERROR:');
