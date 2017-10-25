@@ -1,0 +1,9 @@
+version: '2'
+services:
+  andi-bot:
+    build: .
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/var/app/andi-bot-learning-events-api
+    command: node server.js
