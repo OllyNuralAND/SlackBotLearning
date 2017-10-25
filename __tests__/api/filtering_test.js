@@ -1,11 +1,10 @@
 let filtering = require('../../api/filtering');
-let mockData = require('../../__mocks__/mockData');
-let mockDataSingle = require('../../__mocks__/mockDataSingle');
-let mockDataEmpty = require('../../__mocks__/mockDataEmpty');
+let mockDataFile = require('../../__mocks__/mockData');
 // items is the actual array of events returned, see mockData for further details (meta data)
-mockData = mockData.mockData.items;
-mockDataSingle = mockDataSingle.mockData.items;
-mockDataEmpty = mockDataEmpty.mockData.items;
+// Get each different type of mockData from the file
+let mockData = mockDataFile.mockData.items;
+let mockDataSingle = mockDataFile.mockDataSingle.items;
+let mockDataEmpty = mockDataFile.mockDataEmpty.items;
 
 describe('Should return correct responses given array of multiple events from mock data', () => {
     it("Should return an array of length 2 when filtering on 'learningevents'", (done) => {
