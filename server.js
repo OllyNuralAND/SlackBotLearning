@@ -4,6 +4,7 @@ const googleauth = require('./api/googleauth');
 const requests = require('./api/requests');
 const filtering = require('./api/filtering');
 const eventTypes = require('./api/eventTypes');
+const moment = require('moment');
 // While we don't have any auth, it will throw a reject promise
 // So it will return [].
 let oauth2Client;
@@ -41,8 +42,13 @@ app.get('/events/:eventType', function (req, res) {
 
 // We need to right some logic here to differentiate between the different requests
 function getData(event) {
+    //Default the maxtime limit for the listEvents paramenter to be one month from now. 
+    //TODO: make dynmic once its interpreted from the front end. 
+    let date = moment().add(1, 'M'); 
+
+    console.log(date);
     return new Promise ((resolve, reject) => {
-        requests.listEvents(oauth2Client)
+        requests.listEvents(oauth2Client, date)
             .then(requestEvents => {
                 let filteredEvents = filtering.formatEvents(requestEvents, event.id);
                 resolve(filteredEvents);

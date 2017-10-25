@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const originalDate = moment("2013-08-26 16:55:00");
+const originalDate = moment().add(2, 'w');
 const dateTime =  originalDate.toISOString();
 const date = originalDate.format('YYYY-MM-DD');
 

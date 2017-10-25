@@ -1,5 +1,6 @@
 const requests = require('../../api/requests');
 const moment = require('moment');
+const googleauth = require('../../api/googleauth');
 jest.mock('googleapis');
 const google = require('googleapis');
 
@@ -9,24 +10,33 @@ const originalDate = google.originalDate;
 const dateTime = google.dateTime;
 const date = google.date;
 
+let timeLimit = moment().add(1, "M");
+
+console.log("timeLimit: " + timeLimit);
+
+let oauth2Client;
+googleauth.authSetup((authClientResponse) => {
+    oauth2Client = authClientResponse;
+});
+
 describe("Checking the get of google API information is returned correctly", function () {
 
   it("Should return an array of 3 responses from the google API request", function (done) {
-    requests.listEvents().then(response => {
+    requests.listEvents(oauth2Client, timeLimit).then(response => {
       expect(response).toHaveLength(3);
       done();
     });
   });
 
   it("Check that the array is not empty from #listEvents", function (done) {
-    requests.listEvents().then(response => {
+    requests.listEvents(oauth2Client, timeLimit).then(response => {
       expect(response).not.toBeNull();
       done();
     });
   });
 
   it("Check that the first event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
-    requests.listEvents().then(response => {
+    requests.listEvents(oauth2Client, timeLimit).then(response => {
       expect(response[0].id).toBe('123');
       expect(response[0].htmlLink).toBe('www.google.com');
       expect(response[0].summary).toBe('CoP meeting blah');
@@ -34,12 +44,17 @@ describe("Checking the get of google API information is returned correctly", fun
       expect(response[0].start.date).toBe(date);
       expect(response[0].start.dateTime).toBe(dateTime);
       expect(response[0].end.dateTime).toBe(dateTime);
+
+      let dateTimeToMoment = moment(response[0].end.dateTime, "YYYY-MM-DDTHH:mm:ssZ");
+      console.log(dateTimeToMoment);
+      console.log("Difference:" + dateTimeToMoment.diff(timeLimit));
+      expect(dateTimeToMoment.diff(timeLimit)).toBeLessThanOrEqual(0);
       done();
     });
   });
 
   it("Check that the second event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
-    requests.listEvents().then(response => {
+    requests.listEvents(oauth2Client, timeLimit).then(response => {
       expect(response[1].id).toBe('124');
       expect(response[1].htmlLink).toBe('www.google.com');
       expect(response[1].summary).toBe('landl meeting blah');
@@ -47,6 +62,10 @@ describe("Checking the get of google API information is returned correctly", fun
       expect(response[1].start.date).toBe(date);
       expect(response[1].start.dateTime).toBe(dateTime);
       expect(response[1].end.dateTime).toBe(dateTime);
+      let dateTimeToMoment = moment(response[1].end.dateTime, "YYYY-MM-DDTHH:mm:ssZ");
+      console.log(dateTimeToMoment);
+      console.log("Difference:" + dateTimeToMoment.diff(timeLimit));
+      expect(dateTimeToMoment.diff(timeLimit)).toBeLessThanOrEqual(0);
       done();
     });
   });

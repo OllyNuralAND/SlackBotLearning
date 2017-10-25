@@ -1,9 +1,14 @@
 const google = require('googleapis');
+const moment = require('moment');
 
 
 module.exports = {
-  listEvents: function (auth) {
-    return new Promise((resolve, reject, timeLimit) => {
+  listEvents: function (auth, timeLimit) {
+    return new Promise((resolve, reject) => {
+
+      console.log("Request timeLimit: " + timeLimit);
+
+      const timeLimitISO = timeLimit; 
 
       let calendar = google.calendar('v3');
 
@@ -13,7 +18,7 @@ module.exports = {
         timeMin: (new Date()).toISOString(),
         //   timeMax: (new Date()).toISOString(),
         maxResults: 100, // to be edited later
-        timeMax: timeLimit
+        timeMax: timeLimitISO
       }, function (err, response) {
         if (err) {
           console.log('ERROR:');
