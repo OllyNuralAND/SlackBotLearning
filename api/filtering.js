@@ -3,12 +3,12 @@ const eventTypes = require("./eventTypes");
 function formatEvents(events, eventFilter) {
   if (events.length == 0) {
     return ([]);
-  } else if (events.length == 1) {
-    let notFilteredArray = [];
-    const notFilteredEvent = formatEventData(events);
-    notFilteredArray.push(notFilteredEvent);
-    //filter it by the event type required
-    return filterArrayByEventType(notFilteredArray, eventFilter);
+  // } else if (events.length == 1) {
+  //   let notFilteredArray = [];
+  //   const notFilteredEvent = formatEventData(events);
+  //   notFilteredArray.push(notFilteredEvent);
+  //   //filter it by the event type required
+  //   return filterArrayByEventType(notFilteredArray, eventFilter);
   } else {
     let notFilteredEvents = [];
     for (let eventObject of events) {
@@ -20,9 +20,7 @@ function formatEvents(events, eventFilter) {
     //Filters the array to remove all eventTypes that are not required 
     return filterArrayByEventType(notFilteredEvents, eventFilter);
   }
-
 }
-
 
 function filterArrayByEventType(notFilteredEvents, eventFilter) {
   if (eventFilter === eventTypes[0].id) {
@@ -33,7 +31,6 @@ function filterArrayByEventType(notFilteredEvents, eventFilter) {
     });
     return filteredEvents;
   }
-
 }
 
 function formatEventData(event) {

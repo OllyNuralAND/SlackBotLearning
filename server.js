@@ -44,7 +44,6 @@ function getData(event) {
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client)
             .then(requestEvents => {
-                console.log(event);
                 let filteredEvents = filtering.formatEvents(requestEvents, event.id);
                 resolve(filteredEvents);
             }, error => {
@@ -60,7 +59,7 @@ app.get('/', function (req, res) {
 
 // Start the server! 
 app.listen(port, function () {
-  console.log('Example app listening on port ' + port);
+  console.log(`Example app listening on ${port} `);
 });
 
 // Export the app so we can run tests against it! 

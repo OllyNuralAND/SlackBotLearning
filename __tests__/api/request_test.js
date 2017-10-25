@@ -15,7 +15,7 @@ describe("Checking the get of google API information is returned correctly", fun
     requests.listEvents().then(response => {
       expect(response).toHaveLength(3);
       done();
-    })
+    });
   });
 
   it("Check that the array is not empty from #listEvents", function (done) {
@@ -24,7 +24,6 @@ describe("Checking the get of google API information is returned correctly", fun
       done();
     });
   });
-
 
   it("Check that the first event returned from #listEvents is in the correct structure and has all fields defined correctly", function (done) {
     requests.listEvents().then(response => {

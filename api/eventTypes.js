@@ -1,7 +1,5 @@
-// Case insensitive
-
-// Put learningevents at the top for now
-// Using it as a reference pointer
+// learningevents needs to be first, until code is refactored @ filtering.js:26
+// all should be case sensitive
 
 let array = [
     {
@@ -20,7 +18,8 @@ let array = [
             "community of practice",
             "community of practices",
             "cop",
-            "cops"
+            "cops",
+            "com of practice"
         ]
     },
     {
@@ -32,7 +31,8 @@ let array = [
             "l&l",
             "lunch & learn", 
             "landl",
-            "lunchandlearn"
+            "lunchandlearn",
+            "lunch n learn"
         ]
     }
 ];
