@@ -46,8 +46,6 @@ describe("Checking the get of google API information is returned correctly", fun
       expect(response[0].end.dateTime).toBe(dateTime);
 
       let dateTimeToMoment = moment(response[0].end.dateTime, "YYYY-MM-DDTHH:mm:ssZ");
-      console.log(dateTimeToMoment);
-      console.log("Difference:" + dateTimeToMoment.diff(timeLimit));
       expect(dateTimeToMoment.diff(timeLimit)).toBeLessThanOrEqual(0);
       done();
     });
@@ -62,9 +60,8 @@ describe("Checking the get of google API information is returned correctly", fun
       expect(response[1].start.date).toBe(date);
       expect(response[1].start.dateTime).toBe(dateTime);
       expect(response[1].end.dateTime).toBe(dateTime);
+
       let dateTimeToMoment = moment(response[1].end.dateTime, "YYYY-MM-DDTHH:mm:ssZ");
-      console.log(dateTimeToMoment);
-      console.log("Difference:" + dateTimeToMoment.diff(timeLimit));
       expect(dateTimeToMoment.diff(timeLimit)).toBeLessThanOrEqual(0);
       done();
     });

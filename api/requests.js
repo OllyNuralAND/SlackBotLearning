@@ -6,7 +6,6 @@ module.exports = {
   listEvents: function (auth, timeLimit) {
     return new Promise((resolve, reject) => {
 
-      console.log("Request timeLimit: " + timeLimit);
 
       const timeLimitISO = timeLimit; 
 

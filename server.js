@@ -50,7 +50,6 @@ function getData(foundEventType) {
     //TODO: make dynmic once its interpreted from the front end. 
     let date = moment().add(1, 'M'); 
 
-    console.log(date);
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client, date)
             .then(requestEvents => {

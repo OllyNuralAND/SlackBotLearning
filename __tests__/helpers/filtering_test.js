@@ -42,16 +42,21 @@ describe('Should filter and return correct responses given array of multiple eve
     it("Should return an empty array when filtering on an object", (done) => {
         expect(filtering.filterEvents(mockData, {name: 'hello'})).toEqual([]);
         done();
-    })
-})
+    });
+
+    it("Should return false when a non-idetifying event type is used", (done) => {
+        console.log(filtering.filterEvents(mockData, null));
+        expect(filtering.filterEvents(mockData, {name: "other"})).toEqual([]);
+        done();
+    });
+});
 
 describe('Should filter and return correct responses given array of a single event from mock data', () => {
     let mockDataSingle;
 
     beforeEach(() => {
         mockDataSingle = mockDataFile.mockData.items.slice(0, 1);
-    })
-
+    });
 
     it("Should return the correct, single CoP event from the mockData when filtering for 'cop'", (done) => {
         expect(filtering.filterEvents(mockDataSingle, getCopEventType)).toHaveLength(1);
@@ -61,7 +66,8 @@ describe('Should filter and return correct responses given array of a single eve
     it("Should return an empty array when filtering for 'learningevents' in mockData", (done) => {
         expect(filtering.filterEvents(mockDataSingle, getLunchAndLearnType)).toHaveLength(0);
         done();
-    })
+    });
+
 });
 
 describe('Should filter and return correct responses given empty array from mock data', () => {
