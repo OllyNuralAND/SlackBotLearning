@@ -44,11 +44,6 @@ describe('Should filter and return correct responses given array of multiple eve
         done();
     });
 
-    it("Should return false when a non-idetifying event type is used", (done) => {
-        console.log(filtering.filterEvents(mockData, null));
-        expect(filtering.filterEvents(mockData, {name: "other"})).toEqual([]);
-        done();
-    });
 });
 
 describe('Should filter and return correct responses given array of a single event from mock data', () => {
