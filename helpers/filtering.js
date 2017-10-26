@@ -1,5 +1,7 @@
 // Filter events to just return the ones pertaining to the search parameter
 function filterEvents(events, eventType) {
+
+  if (!eventType) return [];
   // Get the ID and Labels from the eventType we receive - check for errors
   const labels = eventType.labels;
 
