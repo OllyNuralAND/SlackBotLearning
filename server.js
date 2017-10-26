@@ -48,7 +48,7 @@ app.get('/events/:eventType', function (req, res) {
 function getData(foundEventType) {
     //Default the maxtime limit for the listEvents paramenter to be one month from now. 
     //TODO: make dynmic once its interpreted from the front end. 
-    let date = moment().add(1, 'M'); 
+    let date = moment().add(1, 'M').toISOString(); 
 
     return new Promise ((resolve, reject) => {
         requests.listEvents(oauth2Client, date)
